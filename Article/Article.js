@@ -1,5 +1,3 @@
-/* This is the data we will be using to create our articles */
-/* Look over this data, then proceed to line 91*/
 const data = [
   {
     title: 'Lambda School Students: "We\'re the best!"',
