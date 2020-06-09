@@ -148,6 +148,7 @@ function articleMaker(obj){
   }
   Object.assign(span.style, spanStyle);
   article.appendChild(span);
+  
   span.addEventListener('click', (e) => {
     e.target.textContent === '\u{025bc}\u{025c2}' ? e.target.textContent = '\u{022C8}' : e.target.textContent = '\u{025bc}\u{025c2}';
     article.classList.toggle('article-open');
@@ -166,17 +167,3 @@ let meta = document.createElement('meta');
 meta.setAttribute('charset', 'utf-16');
 const head = document.querySelector('head');
 head.appendChild(meta);
-/*
-  window.addEventListener('load', () => {
-    gsap.to('span', {ease: 'stagger',backgroundColor: '#388E3C', duration: 4, color: 'white'});
-  })
-
-
-
-const gsapScript = document.createElement('script');
-gsapScript.setAttribute('src', "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.4/gsap.min.js");
-head.appendChild(gsapScript);
-
-
-
-*/
