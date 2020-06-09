@@ -148,6 +148,10 @@ function articleMaker(obj){
   }
   Object.assign(span.style, spanStyle);
   article.appendChild(span);
+  span.addEventListener('click', (e) => {
+    e.target.textContent === '\u{022CA}\u{022C9}' ? e.target.textContent = '\u{022C8}' : e.target.textContent = '\u{022CA}\u{022C9}';
+    article.classList.toggle('article-open');
+  }) 
   
   articles.appendChild(article);
   
