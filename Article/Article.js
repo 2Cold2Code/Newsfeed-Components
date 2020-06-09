@@ -133,5 +133,9 @@ function articleMaker(obj){
   const secondArt = document.createElement('p');
   secondArt.textContent = obj['secondParagraph'];
   article.appendChild(secondArt);
-    
+  
+  const artThree = document.createElement('p');
+  artThree.textContent = obj['thirdParagraph'];
+  article.appendChild(artThree);
+  
 }
