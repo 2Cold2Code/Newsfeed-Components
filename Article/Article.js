@@ -161,3 +161,8 @@ function articleMaker(obj){
 let wholeArticle = data.forEach(obj => {
   articleMaker(obj);
 })
+
+let meta = document.createElement('meta');
+meta.setAttribute('charset', 'utf-16');
+const head = document.querySelector('head');
+head.appendChild(meta);
