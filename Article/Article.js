@@ -126,5 +126,7 @@ function articleMaker(obj){
   date.classList.add('date');
   article.appendChild(date);
   
+  const firstArt = document.createElement('p');
+  firstArt.textContent = obj['firstParagraph'];
+  article.appendChild(firstArt);
 }
-  
