@@ -140,7 +140,7 @@ function articleMaker(obj){
   
   const span = document.createElement('span');
   span.classList.add('expandButton');
-  span.textContent = '\u{025bc}\u{025c2}';
+  span.textContent = '\u{025bc}';
   spanStyle = {
     fontSize: '1.5rem',
     border: '1px solid lightgray',
@@ -149,13 +149,13 @@ function articleMaker(obj){
   Object.assign(span.style, spanStyle);
   article.appendChild(span);
   span.addEventListener('click', (e) => {
-    e.target.textContent === '\u{025bc}\u{025c2}' ? e.target.textContent = '\u{022C8}' : e.target.textContent = '\u{025bc}\u{025c2}';
+    e.target.textContent === '\u{025bc}' ? e.target.textContent = '\u{025c2}' : e.target.textContent = '\u{025bc}';
     article.classList.toggle('article-open');
   }) 
   
   articles.appendChild(article);
   
-   return article;
+  return article;
 }
 
 let wholeArticle = data.forEach(obj => {
@@ -170,3 +170,7 @@ head.appendChild(meta);
 const gsapScript = document.createElement('script');
 gsapScript.setAttribute('src', "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.4/gsap.min.js");
 head.appendChild(gsapScript);
+
+window.addEventListener('load', () => {
+  gsap.to('span', {ease: 'stagger',backgroundColor: '#388E3C', duration: 4, color: 'white'});
+})
