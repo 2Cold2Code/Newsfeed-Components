@@ -142,13 +142,13 @@ function articleMaker(obj){
   span.classList.add('expandButton');
   span.textContent = '\u{025bc}\u{025c2}';
   spanStyle = {
-    fontSize = '1.5rem',
-    border = '1px solid lightgray',
-    borderRadius = '25%',
+    fontSize: '1.5rem',
+    border: '1px solid lightgray',
+    borderRadius: '25%',
   }
   Object.assign(span.style, spanStyle);
   article.appendChild(span);
-  
+
   span.addEventListener('click', (e) => {
     e.target.textContent === '\u{025bc}\u{025c2}' ? e.target.textContent = '\u{022C8}' : e.target.textContent = '\u{025bc}\u{025c2}';
     article.classList.toggle('article-open');
