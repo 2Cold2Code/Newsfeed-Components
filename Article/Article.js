@@ -115,6 +115,11 @@ const articles = document.querySelector('.articles');
 function articleMaker(obj){
   const article = document.createElement('div');
   article.classList.add('article');
-
+  
+  const title = document.createElement('h2');
+  title.classList.add('article', 'h2');
+  title.textContent = obj.title;
+  article.appendChild(title);
+  
 }
   
