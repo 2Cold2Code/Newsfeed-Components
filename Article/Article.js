@@ -138,4 +138,22 @@ function articleMaker(obj){
   artThree.textContent = obj['thirdParagraph'];
   article.appendChild(artThree);
   
+  const span = document.createElement('span');
+  span.classList.add('expandButton');
+  span.textContent = '\u{022CA}\u{022C9}';
+  spanStyle = {
+    fontSize = '1.5rem',
+    border = '1px solid lightgray',
+    borderRadius = '25%',
+  }
+  Object.assign(span.style, spanStyle);
+  article.appendChild(span);
+  
+  articles.appendChild(article);
+  
+   return article;
 }
+
+let wholeArticle = data.forEach(obj => {
+  articleMaker(obj);
+})
