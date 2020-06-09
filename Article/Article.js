@@ -121,5 +121,10 @@ function articleMaker(obj){
   title.textContent = obj.title;
   article.appendChild(title);
   
+  const date = document.createElement('p');
+  date.textContent = obj.date;
+  date.classList.add('date');
+  article.appendChild(date);
+  
 }
   
