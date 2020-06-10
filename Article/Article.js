@@ -109,3 +109,68 @@ const data = [
 
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 */
+
+const articles = document.querySelector('.articles');    
+
+function articleMaker(obj){
+  const article = document.createElement('div');
+  article.classList.add('article');
+  
+  const title = document.createElement('h2');
+  title.classList.add('article', 'h2');
+  title.textContent = obj.title;
+  article.appendChild(title);
+  
+  const date = document.createElement('p');
+  date.textContent = obj.date;
+  date.classList.add('date');
+  article.appendChild(date);
+  
+  const firstArt = document.createElement('p');
+  firstArt.textContent = obj['firstParagraph'];
+  article.appendChild(firstArt);
+
+  const secondArt = document.createElement('p');
+  secondArt.textContent = obj['secondParagraph'];
+  article.appendChild(secondArt);
+  
+  const artThree = document.createElement('p');
+  artThree.textContent = obj['thirdParagraph'];
+  article.appendChild(artThree);
+  
+  const span = document.createElement('span');
+  span.classList.add('expandButton');
+  span.textContent = '\u{025bc}';
+  spanStyle = {
+    fontSize: '1.5rem',
+    border: '1px solid lightgray',
+    borderRadius: '25%',
+  }
+  Object.assign(span.style, spanStyle);
+  article.appendChild(span);
+  span.addEventListener('click', (e) => {
+    e.target.textContent === '\u{025bc}' ? e.target.textContent = '\u{025c2}' : e.target.textContent = '\u{025bc}';
+    article.classList.toggle('article-open');
+  }) 
+  
+  articles.appendChild(article);
+  
+  return article;
+}
+
+let wholeArticle = data.forEach(obj => {
+  articleMaker(obj);
+})
+
+let meta = document.createElement('meta');
+meta.setAttribute('charset', 'utf-16');
+const head = document.querySelector('head');
+head.appendChild(meta);
+
+const gsapScript = document.createElement('script');
+gsapScript.setAttribute('src', "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.4/gsap.min.js");
+head.appendChild(gsapScript);
+
+window.addEventListener('load', () => {
+  gsap.to('span', {ease: 'stagger',backgroundColor: '#388E3C', duration: 4, color: 'white'});
+})
