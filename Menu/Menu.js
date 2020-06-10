@@ -12,43 +12,53 @@ function newEl(selector, appendTo, elClass, textCont){
   elClass && element.classList.add(elClass);
   textCont && (element.textContent = textCont);
   appendTo.appendChild(element);
+  return appendTo;
 }
 
-const img = document.querySelector('.menu-button').parentNode;
+const img = document.querySelector('.menu-button');
 
 function show (data, ...args){
   console.log(data, ...args);
 }
 
-show('The img tag is: ', img)
 
 function menuMaker(arr) {
-  const menu = newEl('div', img, 'menu-container');
-  const openButton = makeBtn('menu--open', menu, img);
-  const closeButton = makeBtn('menu--open', menu, img)
-  return menu
+  const menu = document.createElement('div');
+  menu.classList.add('menu', 'menu-container');
+  img.appendChild(menu)
+  show('The img tag is: ', img)
+  ulMaker(arr)
+  const openButton = makeBtn('menu--open', img, img);
+  show('this is the menu after open/close btns and menu creation', menu)
+  return menu;
 }
 
-function ul(arr) {
-  const ulArr = newEl('ul', menu, 'list-container');
+function ulMaker(arr) {
+  const menu = document.querySelector('.menu-container');
+  const ul = newEl('ul', menu, 'list-container');
+  show(ul)
   arr.map(item => {
-    let itemEl = newEl('li', ulArr, 'list-item', item);
-
+    return li(item)
   }
 )
-  return ulArr;
+  return ul;
 };
 
 function li(item) {
-  const listItem = document.createElement('li');
-  li.textContent = item;
+  let ul = document.querySelector('.list-container');
+  const listItem = newEl('li', ul, 'list-item', item)
   return listItem;
 };
 
-function makeBtn(classtype, applyToNode, appendTo) {
+const toggleEl = (classtype, applyToNode) => {
+  return applyToNode['classList'].toggle(classtype);
+}
+function makeBtn(appendTo) {
   const button = document.createElement('button');
-  button.click((e) => {
-    applyToNode['classList'].toggle(classtype);
+  button.addEventListener('click', (e) => {
+    toggleEl(menu, 'menu--open')
   });
   appendTo.appendChild(button)
 };
+
+menuMaker(menuItems)
