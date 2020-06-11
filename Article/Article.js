@@ -1,3 +1,11 @@
+function newEl(selector, appendTo, elClass, textCont){
+  const element = document.createElement(selector);
+  elClass && element.classList.add(elClass);
+  textCont && (element.textContent = textCont);
+  appendTo.appendChild(element);
+  return element;
+}
+
 const data = [
   {
     title: 'Lambda School Students: "We\'re the best!"',
@@ -111,50 +119,57 @@ const data = [
 */
 
 const articles = document.querySelector('.articles');    
-
+const divStyle = {
+  marginTop: '90px',
+  transparency: .1
+}
+Object.assign(articles.style, divStyle)
 function articleMaker(obj){
-  const article = document.createElement('div');
-  article.classList.add('article');
+  const article = newEl('div', articles, 'article', null);//document.createElement('div');
+  // article.classList.add('article');
   
-  const title = document.createElement('h2');
-  title.classList.add('article', 'h2');
-  title.textContent = obj.title;
-  article.appendChild(title);
-  
-  const date = document.createElement('p');
-  date.textContent = obj.date;
-  date.classList.add('date');
-  article.appendChild(date);
-  
-  const firstArt = document.createElement('p');
-  firstArt.textContent = obj['firstParagraph'];
-  article.appendChild(firstArt);
+  const title = newEl('h2', article, null, obj.title)//document.createElement('h2');
+  // title.classList.add('article', 'h2');
+  // title.textContent = obj.title;
+  // article.appendChild(title);
 
-  const secondArt = document.createElement('p');
-  secondArt.textContent = obj['secondParagraph'];
-  article.appendChild(secondArt);
+  const date = newEl('p', article, 'date', obj.date)//document.createElement('p');
+  // date.textContent = obj.date;
+  // date.classList.add('date');
+  // article.appendChild(date);
+  let paras = Object.keys(obj);
+  paras = paras.filter(key => 'title' !== key && 'date' !== key)
+               .map(paragraph => newEl('p', article, 'paras', obj[paragraph])); 
   
-  const artThree = document.createElement('p');
-  artThree.textContent = obj['thirdParagraph'];
-  article.appendChild(artThree);
+  //document.createElement('p');
+  // firstArt.textContent = obj['firstParagraph'];
+  // article.appendChild(firstArt);
+
+  // const secondArt = newEl('p', article, null, obj['secondParagraph']); //document.createElement('p');
+  // // secondArt.textContent = obj['secondParagraph'];
+  // // article.appendChild(secondArt);
   
-  const span = document.createElement('span');
-  span.classList.add('expandButton');
-  span.textContent = '\u{025bc}';
+  // const artThree = newEl('p', article, null, obj['thirdParagraph']); //document.createElement('p');
+  // // artThree.textContent = obj['thirdParagraph'];
+  // // article.appendChild(artThree);
+  
+  const span = newEl('span', article, 'expandButton', '\u{025c2}'); //document.createElement('span');
+  // span.classList.add('expandButton');
+  // span.textContent = '\u{025bc}';
   spanStyle = {
     fontSize: '1.5rem',
     border: '1px solid lightgray',
     borderRadius: '25%',
   }
   Object.assign(span.style, spanStyle);
-  article.appendChild(span);
+  // article.appendChild(span);
   span.addEventListener('click', (e) => {
-    e.target.textContent === '\u{025bc}' ? e.target.textContent = '\u{025c2}' : e.target.textContent = '\u{025bc}';
     article.classList.toggle('article-open');
+    e.target.textContent === '\u{025c2}' ? (e.target.textContent = '\u{025bc}') : (e.target.textContent = '\u{025c2}');
   }) 
   
-  articles.appendChild(article);
-  
+  // articles.appendChild(article);
+  console.log('Article at return: ', article)
   return article;
 }
 
