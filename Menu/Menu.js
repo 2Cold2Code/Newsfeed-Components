@@ -28,14 +28,14 @@ function menuMaker(arr) {
   img.appendChild(menu)
   show('The img tag is: ', img)
   ulMaker(arr)
-  const openButton = makeBtn('menu--open', img, img);
+  const openButton = makeBtn(img);
   show('this is the menu after open/close btns and menu creation', menu)
   return menu;
 }
 
 function ulMaker(arr) {
   const menu = document.querySelector('.menu-container');
-  const ul = newEl('ul', menu, 'list-container');
+  const ul = newEl('ul', menu, 'ul');
   show(ul)
   arr.map(item => {
     return li(item)
@@ -45,18 +45,22 @@ function ulMaker(arr) {
 };
 
 function li(item) {
-  let ul = document.querySelector('.list-container');
-  const listItem = newEl('li', ul, 'list-item', item)
+  let ul = document.querySelector('.ul');
+  const listItem = newEl('li', ul, 'li', item)
   return listItem;
 };
 
 const toggleEl = (classtype, applyToNode) => {
-  return applyToNode['classList'].toggle(classtype);
+  return applyToNode.classList.toggle(classtype);
 }
+const hamburger = Object.create(img)
 function makeBtn(appendTo) {
+  let menu = document.querySelector('.menu-container')
   const button = document.createElement('button');
   button.addEventListener('click', (e) => {
-    toggleEl(menu, 'menu--open')
+    menu.classList === 'menu--open' ? (e.target.src = './http://icons.iconarchive.com/icons/fatcow/farm-fresh/32/application-control-bar-icon.png') : Object.apply(e.target, hamburger);
+    toggleEl('menu--open', menu);
+    console.log(menu)
   });
   appendTo.appendChild(button)
 };
